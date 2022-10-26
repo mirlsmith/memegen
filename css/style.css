@@ -47,6 +47,26 @@ body {
     height: 90vh;
 }
 
+/* BUTTONS */
+button,
+.btn {
+    margin: 0;
+    font-family: montserrat-med, sans-serif;
+    line-height: normal;
+    color: var(--clr1);
+    border: none;
+    padding: 0.5em 1.3em;
+    background-color: var(--clr-primary);
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.icon-btn {
+    background-color: var(--clr1);
+    padding-left: 0.7em;
+    padding-right: 0.7em;
+}
+
 /* HELPERS */
 
 /* flex helpers */
@@ -75,14 +95,36 @@ body {
     list-style-type: none;
 }
 
-/* layout  */
+/* hide helpers */
+
+.hidden {
+    display: none;
+}
+
+/* LAYOUT */
+
+.main-section-layout {
+    background-color: var(--clr-1);
+    margin: 0 auto;
+    padding: 20px;
+}
 
 .colored-section {
     background-color: var(--clr-primary)
         /* padding: 4.375rem 0; */
 }
 
-/* LAYOUT */
+/* meme editor  */
+
+.meme-editor .editor-tools {
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.meme-editor .editor-tools .share {
+    align-self: flex-end;
+}
+
 /* .main-layout {
     margin-left: 16px;
     margin-right: 16px;
@@ -93,25 +135,23 @@ body {
 
 /* header  */
 
-/* .main-header {
-    min-height: 10rem;
-} */
-
-.top-header {
-    width: 100%;
+.main-header {
     padding: 10px;
+}
+
+.gallery .filter-nav{
+    background-color: var(--clr1);
+    position: relative;
+    bottom: 20px;
+    width: 100vw;
+    left: calc(-50vw + 50%);
+    padding: 15px;
 }
 
 
 /* gallery  */
-.gallery-container {
-    background-color: var(--clr-1);
-    margin: 0 auto;
-    padding: 20px;
-    width: 90vw;
-
+.gallery-container {    
     display: grid;
-    margin: 50px;
     gap: 10px;
 
     place-content: center;
@@ -130,6 +170,11 @@ body {
     height: 100%;
 }
 
+/* footer  */
+
+.main-footer {
+    padding: 10px;
+}
 
 /* logo  */
 .logo img {
@@ -138,6 +183,10 @@ body {
 
 /* meme editor  */
 
+.meme-editor {
+    background-color: var(--clr-1);
+    justify-content: space-around;
+}
 
 /* editor tools  */
 .editor-tools img {
@@ -147,9 +196,7 @@ body {
 
 /* canvas  */
 
-.canvas-container {
-    display: none;
-}
+.canvas-container {}
 
 canvas {
     display: block;
