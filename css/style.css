@@ -1,0 +1,150 @@
+:root {
+    /* pallet */
+    --clr-primary: #ff7f00;
+    --clr1: #ffffff;
+    --clr-1: #e3e3e3;
+
+    /* BP */
+
+}
+
+* {
+    box-sizing: border-box;
+}
+
+/* TYPOGRAPHY */
+
+@font-face {
+    font-family: montserrat-reg;
+    src: url(/fonts/Montserrat/Montserrat-Regular.ttf);
+}
+
+@font-face {
+    font-family: montserrat-bold;
+    src: url(/fonts/Montserrat/Montserrat-Bold.ttf);
+}
+
+@font-face {
+    font-family: montserrat-med;
+    src: url(/fonts/Montserrat/Montserrat-Medium.ttf);
+}
+
+@font-face {
+    font-family: montserrat-lite;
+    src: url(/fonts/Montserrat/Montserrat-Light.ttf);
+}
+
+/* BASICS  */
+
+html {
+    color: var(--clr1);
+    font-family: montserrat-reg, sans-serif;
+}
+
+body {
+    margin: 0;
+    font-size: 1.1875rem;
+    height: 90vh;
+}
+
+/* HELPERS */
+
+/* flex helpers */
+
+.flex {
+    display: flex;
+}
+
+.flex.flex-col {
+    flex-direction: column;
+}
+
+.flex.space-between {
+    justify-content: space-between;
+}
+
+.flex.align-center {
+    align-items: center;
+}
+
+/* list helpers */
+
+.clean-list {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+/* layout  */
+
+.colored-section {
+    background-color: var(--clr-primary)
+        /* padding: 4.375rem 0; */
+}
+
+/* LAYOUT */
+/* .main-layout {
+    margin-left: 16px;
+    margin-right: 16px;
+} */
+
+
+/* COMPONENTS  */
+
+/* header  */
+
+/* .main-header {
+    min-height: 10rem;
+} */
+
+.top-header {
+    width: 100%;
+    padding: 10px;
+}
+
+
+/* gallery  */
+.gallery-container {
+    background-color: var(--clr-1);
+    margin: 0 auto;
+    padding: 20px;
+    width: 90vw;
+
+    display: grid;
+    margin: 50px;
+    gap: 10px;
+
+    place-content: center;
+
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    grid-auto-rows: 100px;
+
+    /* for mobile?  */
+    /* grid-template-columns: 90vw;
+    grid-auto-rows: 100px; */
+}
+
+.gallery-container img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+
+/* logo  */
+.logo img {
+    height: 25px;
+}
+
+/* canvas  */
+
+.canvas-container {
+    display: none;
+}
+
+canvas {
+    display: block;
+    margin: 0 auto;
+    /* outline: 1px solid black; */
+    background-color: var(--clr1);
+}

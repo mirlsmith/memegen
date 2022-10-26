@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Make a Meme!</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="main-layout">
+    
+    <header class="main-header flex flex-col align-center">
+        <div class="top-header flex space-between colored-section">
+            <div class="logo"><img src="/img/LOGO.png" alt="logo"></div>
+            <nav class="main-nav">
+                <ul class="flex clean-list">
+                    <li><a href="#">Gallery</a></li>
+                    <li><a href="#">About</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <nav class="filter-nav flex">
+            <ul class="flex clean list">
+                <li><input type="text" placeholder="Enter search keyword"></li>
+                <li>Keywords</li>
+            </ul>
+        </nav>
+    </header>
+
+
+
+
+    <section class="gallery-container">
+        <article class="gallery-img"><img src="/img/1.jpg" alt="image"></article>
+        <article class="gallery-img"><img src="/img/2.jpg" alt="image"></article>
+        <article class="gallery-img"><img src="/img/3.jpg" alt="image"></article>
+        <article class="gallery-img"><img src="/img/4.jpg" alt="image"></article>
+        <article class="gallery-img"><img src="/img/5.jpg" alt="image"></article>
+        <article class="gallery-img"><img src="/img/6.jpg" alt="image"></article>
+        <article class="gallery-img"><img src="/img/7.jpg" alt="image"></article>
+        <article class="gallery-img"><img src="/img/8.jpg" alt="image"></article>
+        <article class="gallery-img"><img src="/img/9.jpg" alt="image"></article>
+        <article class="gallery-img"><img src="/img/10.jpg" alt="image"></article>
+        <article class="gallery-img"><img src="/img/11.jpg" alt="image"></article>
+        <article class="gallery-img"><img src="/img/12.jpg" alt="image"></article>
+        <article class="gallery-img"><img src="/img/13.jpg" alt="image"></article>
+        <article class="gallery-img"><img src="/img/14.jpg" alt="image"></article>
+        <article class="gallery-img"><img src="/img/15.jpg" alt="image"></article>
+        <article class="gallery-img"><img src="/img/16.jpg" alt="image"></article>
+        <article class="gallery-img"><img src="/img/17.jpg" alt="image"></article>
+        <article class="gallery-img"><img src="/img/18.jpg" alt="image"></article>
+    </section>
+
+    <section class="canvas-container">
+        <canvas id="my-canvas" height="300" width="300" onclick=""></canvas>
+    </section>
+
+    <footer class="main-footer colored-section flex flex-col align-center">
+        <div class="logo"><img src="/img/LOGO.png" alt="logo"></div>
+        <p>All Rights Reserved 2022</p>
+    </footer>
+
+
+    <script src="/js/services/memeService.js"></script>
+    <script src="/js/controllers/galleryController.js"></script>
+    <script src="/js/controllers/memeController.js"></script>
+</body>
+</html>
