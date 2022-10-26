@@ -136,6 +136,15 @@ body {
     height: 25px;
 }
 
+/* meme editor  */
+
+
+/* editor tools  */
+.editor-tools img {
+    height: 20px;
+}
+
+
 /* canvas  */
 
 .canvas-container {
