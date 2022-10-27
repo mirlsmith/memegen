@@ -5,6 +5,8 @@ let gCtx
 
 function onInit() {
 
+    document.querySelector('.meme-editor').classList.add('hidden')
+
     renderGallery()
 
     gElCanvas = document.getElementById('my-canvas')
@@ -13,77 +15,125 @@ function onInit() {
     // resizeCanvas()
     // window.addEventListener('resize', resizeCanvas)
 
-    renderMeme()
+    // addListeners()
+    // resizeCanvas()
+    
+    // renderMeme()
 }
 
 function renderMeme() {
+
+    // resizeCanvas()
 
     const meme = getMeme()
     const { lines, selectedLineIdx: lineIdx, selectedImgId: imgId } = meme
     const imgUrl = getImgPath(imgId)
     // const line = lines[lineIdx]
     drawImgAndText(imgUrl, lines)
-    
-    const { txt } = lines[lineIdx] || ''
 
-    document.querySelector('.editor-tools input').value = (txt)? txt : ''
+    if (lines.length === 0) {
+        document.querySelector('.editor-tools input').value = ''
+    } else {
+        const { txt } = lines[lineIdx]
+        document.querySelector('.editor-tools input').value = txt || ' '
+    }
 }
 
 function drawImgAndText(imgUrl, lines) {
     const img = new Image()
-    // const { align, fillColor, strokeColor, size, font, txt, xPos, yPos } = lines[0]
     img.onload = () => {
+        console.log('canvas width:', gElCanvas.width, 'height:', gElCanvas.height);
+        console.log('canvas:', gElCanvas);
         gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
-        if (lines.length > 0) drawText(lines)
-        // drawText(txt, xPos, yPos, size, font, strokeColor, fillColor, align, lines)
+        if (lines.length > 0) {
+            drawText(lines)
+            const meme = getMeme()
+            // ---- WORK ON THIS LATER IF THERE IS TIME -----
+            // const {selectedLineIdx: lineIdx} = meme
+            // drawLineSelectionRect(lines[lineIdx])
+        }
     }
     img.src = imgUrl
 }
 
-// function drawText(text = 'Funny Stuff', x = 40, y = 70, size, font, strkClr, fillClr, align, lines) {
 function drawText(lines) {
 
-    // const { align1, fillColor1, strokeColor1, size1, font1, txt1, xPos1, yPos1 } = lines[0] //THIS IS WHERE I STOPPED I need to rewrite the function so that it can handle multiple lines of text
-
     lines.forEach(line => {
-        let { align, fillColor, strokeColor, size, font, txt, yPos } = line
-        let xPos
+        let { align, fillColor, strokeColor, size, font, txt, xPos, yPos } = line
 
         gCtx.lineWidth = 2
         gCtx.strokeStyle = strokeColor
         gCtx.fillStyle = fillColor
-        
+
         switch (align) {
             case 'left':
                 gCtx.textAlign = 'start'
-                xPos = 20
                 break;
             case 'right':
                 gCtx.textAlign = 'end'
-                xPos = gElCanvas.width-20
                 break;
             case 'center':
                 gCtx.textAlign = 'center'
-                xPos = gElCanvas.getBoundingClientRect().width/2
                 break;
             default:
                 gCtx.textAlign = 'start'
-                xPos = 20
                 break;
         }
-
         gCtx.font = `${size}px ${font}`
         gCtx.fillText(txt, xPos, yPos)
         gCtx.strokeText(txt, xPos, yPos)
-
     });
 }
 
 // gCtx.measureText(txt).width
 // מחזיר את אורך השורה שהטקסט דורש
 
-function getCanvasHeight () {
+// to work on if there is time
+function drawLineSelectionRect(line){
+    console.log('line to select', line);
+
+    // gCtx.strokeStyle = gCurrDrawTools.color
+    // gCtx.strokeRect(x, y, 20, 20)
+    // gCtx.fillStyle = 'orange'
+    // gCtx.fillRect(x, y, 150, 150)
+
+}
+
+function resizeCanvas() {
+    const elContainer = document.querySelector('.canvas-container')
+    // Note: changing the canvas dimension this way clears the canvas
+    console.log('canvas container width: ', elContainer.offsetWidth);
+    console.log('canvas ctx width:', gCtx.clientWidth);
+    console.log('canvas resolution(?) width:', gCtx.width);
+
+    if (elContainer.offsetWidth >= 700){
+        gElCanvas.width = 700
+        gElCanvas.height = 700
+    }
+    
+    // gElCanvas.width = elContainer.offsetWidth //- 40
+    // Unless needed, better keep height fixed.
+    // gElCanvas.height = elContainer.offsetHeight
+    renderMeme()
+}
+
+function addListeners() {
+    
+    //  -- WORK ON THIS LATER IF THERE IS TIME --
+    // addMouseListeners()
+    // addTouchListeners()
+
+    window.addEventListener('resize', () => {
+        resizeCanvas()
+    })
+}
+
+function getCanvasHeight() {
     return gElCanvas.getBoundingClientRect().height
+}
+
+function getCanvasWidth() {
+    return gElCanvas.getBoundingClientRect().width
 }
 
 function onTextChange(elInput) {

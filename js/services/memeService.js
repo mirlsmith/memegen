@@ -17,18 +17,20 @@ var gMeme = {
         txt: 'Too Much Cuteness', 
         size: 30,
         font: 'Impact',
-        align: 'center',
+        align: 'left',
         strokeColor: 'red',
         fillColor: 'purple',
+        xPos: 20,
         yPos: 50
     },
     {
         txt: 'So Soft and Cuddly', 
         size: 30,
         font: 'Impact',
-        align: 'center',
+        align: 'left',
         strokeColor: 'red',
         fillColor: 'purple',
+        xPos: 20,
         yPos: 150
     }
 ]
@@ -42,6 +44,7 @@ function addLine() {
         align: 'center',
         strokeColor: 'red',
         fillColor: 'purple',
+        xPos: getCanvasWidth() / 2,
         yPos: 60
     }
     gMeme.lines.unshift(newLine)
@@ -108,6 +111,25 @@ function setLineYPos(diff){
 function setLineAlignment(newAlign) {
     if (gMeme.lines.length === 0) return
     gMeme.lines[gMeme.selectedLineIdx].align = newAlign
+    
+    setLineXPos (gMeme.lines[gMeme.selectedLineIdx])
+}
+
+function setLineXPos(line) {
+    switch (line.align) {
+        case 'left':
+            gMeme.lines[gMeme.selectedLineIdx].xPos = 10
+            break;
+        case 'right':
+            gMeme.lines[gMeme.selectedLineIdx].xPos = getCanvasWidth() - 10
+            break;
+        case 'center':
+            gMeme.lines[gMeme.selectedLineIdx].xPos = getCanvasWidth() / 2
+            break;
+        default:
+            gMeme.lines[gMeme.selectedLineIdx].xPos = 15
+            break;
+    }
 }
 
 function setLineSelect() {

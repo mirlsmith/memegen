@@ -15,14 +15,15 @@
         <div class="logo"><img src="img/LOGO.png" alt="logo"></div>
         <nav class="main-nav">
             <ul class="flex clean-list">
-                <li><a href="#">Gallery</a></li>
-                <li><a href="#">About</a></li>
+                <li><a href="#" onclick="onGalleryLink()">Gallery</a></li>
+                <!-- <li><a href="#">About</a></li> -->
             </ul>
         </nav>
     </header>
 
     <section class="gallery main-section-layout">
-        <nav class="filter-nav">
+        <h2>Choose an Image</h2>
+        <nav class="filter-nav hidden">
             <ul class="flex clean-list space-between">
                 <li><input type="text" placeholder="Enter search keyword"></li>
                 <li>Keywords</li>
@@ -36,7 +37,7 @@
 
     <section class="meme-editor flex main-section-layout">
         <section class="canvas-container">
-            <canvas id="my-canvas" height="400" width="400" onclick=""></canvas>
+            <canvas id="my-canvas" width="400" height="400"></canvas>
         </section>
 
         <section class="editor-tools flex flex-col">
