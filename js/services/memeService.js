@@ -14,15 +14,43 @@ var gMeme = {
     selectedImgId: 2,
     selectedLineIdx: 0,
     lines: [ {
-        txt: 'Too much Cuteness', 
+        txt: 'Too Much Cuteness', 
         size: 30,
         font: 'Impact',
-        align: 'left',
+        align: 'center',
         strokeColor: 'red',
         fillColor: 'purple',
-        xPos: 30,
         yPos: 50
-    } ]
+    },
+    {
+        txt: 'So Soft and Cuddly', 
+        size: 30,
+        font: 'Impact',
+        align: 'center',
+        strokeColor: 'red',
+        fillColor: 'purple',
+        yPos: 150
+    }
+]
+}
+
+function addLine() {
+    let newLine = {
+        txt: 'Say Something!', 
+        size: 30,
+        font: 'Impact',
+        align: 'center',
+        strokeColor: 'red',
+        fillColor: 'purple',
+        yPos: 60
+    }
+    gMeme.lines.unshift(newLine)
+    gMeme.selectedLineIdx = 0
+}
+
+function deleteLine() {
+    gMeme.lines.splice(gMeme.selectedLineIdx, 1)
+    gMeme.selectedLineIdx = (gMeme.selectedLineIdx - 1 < 0 )? 0 : gMeme.selectedLineIdx - 1
 }
 
 function getMeme() {
@@ -40,9 +68,49 @@ function getImgPath(imgId) {
 }
 
 function setLineText(newTxt) {
+    if (gMeme.lines.length === 0) return
     gMeme.lines[gMeme.selectedLineIdx].txt = newTxt
+}
+
+function setLineStrokeColor(newClr){
+    if (gMeme.lines.length === 0) return
+    gMeme.lines[gMeme.selectedLineIdx].strokeColor = newClr
+}
+
+function setLineFillColor(newClr){
+    if (gMeme.lines.length === 0) return
+    gMeme.lines[gMeme.selectedLineIdx].fillColor = newClr
 }
 
 function setMemeImg(imgId){
     gMeme.selectedImgId = +imgId
+}
+
+function setLineFontSize(diff){
+    if (gMeme.lines.length === 0) return
+    let newSize = gMeme.lines[gMeme.selectedLineIdx].size + 2*(+diff)
+    gMeme.lines[gMeme.selectedLineIdx].size = newSize
+}
+
+function setFontType(select){
+    if (gMeme.lines.length === 0) return
+    gMeme.lines[gMeme.selectedLineIdx].font = select.value
+}
+
+function setLineYPos(diff){
+    if (gMeme.lines.length === 0) return
+    let newYPos = gMeme.lines[gMeme.selectedLineIdx].yPos + 5*(+diff)
+    const lineHeight = gMeme.lines[gMeme.selectedLineIdx].size
+    if (newYPos < lineHeight || newYPos > getCanvasHeight()) return
+    gMeme.lines[gMeme.selectedLineIdx].yPos = newYPos
+}
+
+function setLineAlignment(newAlign) {
+    if (gMeme.lines.length === 0) return
+    gMeme.lines[gMeme.selectedLineIdx].align = newAlign
+}
+
+function setLineSelect() {
+    if (gMeme.lines.length === 0) return
+    gMeme.selectedLineIdx = (gMeme.selectedLineIdx + 1 > gMeme.lines.length-1)? 0: ++gMeme.selectedLineIdx
 }

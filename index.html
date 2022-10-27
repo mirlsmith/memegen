@@ -22,8 +22,8 @@
     </header>
 
     <section class="gallery main-section-layout">
-        <nav class="filter-nav flex space-between">
-            <ul class="flex clean-list">
+        <nav class="filter-nav">
+            <ul class="flex clean-list space-between">
                 <li><input type="text" placeholder="Enter search keyword"></li>
                 <li>Keywords</li>
             </ul>
@@ -36,39 +36,44 @@
 
     <section class="meme-editor flex main-section-layout">
         <section class="canvas-container">
-            <canvas id="my-canvas" height="300" width="300" onclick=""></canvas>
+            <canvas id="my-canvas" height="400" width="400" onclick=""></canvas>
         </section>
 
         <section class="editor-tools flex flex-col">
             <div>
-                <input type="text" oninput="onTextChange(this)" placeholder="Enter your funny text">
+                <input type="text" oninput="onTextChange(this)" placeholder="Add a line to edit text">
             </div>
             <div>
-                <button class="icon-btn" title="move line up"><img src="img/icons/arrow-up.png" alt="up"></button>
-                <button class="icon-btn" title="move line down"><img src="img/icons/arrow-down.png" alt="down"></button>
-                <button class="icon-btn" title="toggle line selection"><img src="img/icons/up-and-down-opposite-double-arrows-side-by-side.png"
-                        alt="up or down button"></button>
-                <button class="icon-btn" title="add line"><img src="img/icons/add.png" alt="add"></button>
-                <button class="icon-btn" title="delete line"><img src="img/icons/trash.png" alt="delete"></button>
+                <button class="icon-btn" title="move line up" onclick="onMoveLine(-1)"><img src="img/icons/arrow-up.png" alt="up"></button>
+                <button class="icon-btn" title="move line down" onclick="onMoveLine(1)"><img src="img/icons/arrow-down.png" alt="down"></button>
+                <button class="icon-btn" title="toggle line selection" onclick="onLineSelect()"><img src="img/icons/up-and-down-opposite-double-arrows-side-by-side.png" alt="up or down button"></button>
+                <button class="icon-btn" title="add line" onclick="onAddLine()"><img src="img/icons/add.png" alt="add"></button>
+                <button class="icon-btn" title="delete line" onclick="onDeleteLine()"><img src="img/icons/trash.png" alt="delete"></button>
             </div>
             <div>
-                <button class="icon-btn" title="increase font size"><img src="img/icons/increase font - icon.png" alt="increase font"></button>
-                <button class="icon-btn" title="decrease font size"><img src="img/icons/decrease font - icon.png" alt="decrease font"></button>
-                <button class="icon-btn" title="align text left"><img src="img/icons/align-to-left.png" alt="align left"></button>
-                <button class="icon-btn" title="align text center"><img src="img/icons/center-text-alignment.png" alt="center-text"></button>
-                <button class="icon-btn" title="align text right"><img src="img/icons/align-to-right.png" alt="align right"></button>
+                <button class="icon-btn" title="increase font size" onclick="onFontSizeChange(1)"><img src="img/icons/increase font - icon.png" alt="increase font"></button>
+                <button class="icon-btn" title="decrease font size" onclick="onFontSizeChange(-1)"><img src="img/icons/decrease font - icon.png" alt="decrease font"></button>
+                <button class="icon-btn" title="align text left" data-align="left" onclick="onAlignChange(this)"><img src="img/icons/align-to-left.png" alt="align left"></button>
+                <button class="icon-btn" title="align text center" data-align="center" onclick="onAlignChange(this)"><img src="img/icons/center-text-alignment.png" alt="center-text"></button>
+                <button class="icon-btn" title="align text right" data-align="right" onclick="onAlignChange(this)"><img src="img/icons/align-to-right.png" alt="align right"></button>
             </div>
             <div class="flex">
-                <select class="font-picker" title="select font" onchange="">
+                <select class="font-picker" title="select font" onchange="onFontTypeChange(this)">
                     <option value="impact">Impact</option>
                     <option value="arial">Arial</option>
                     <option value="comic-sans">Comic Sans</option>
-                    <option value="myriad-pro">Myriad Pro</option>
+                    <!-- <option value="myriad-pro">Myriad Pro</option> -->
                     <option value="helvetica">Helvetica</option>
                     <option value="montserrat">Montserrat</option>
                 </select>
-                <button class="icon-btn" title="text outline color"><img src="img/icons/text stroke.png" alt="text stroke"></button>
-                <button class="icon-btn" title="text fill color"><img src="img/icons/paint-board-and-brush.png" alt="text colored"></button>
+                <div class="input-hider">
+                    <button class="icon-btn" type="color" title="text outline color"><img src="img/icons/text stroke.png" alt="text stroke"></button>
+                    <input class="text-stroke-color-picker hidden-input" type="color" title="text outline color" oninput="onStrokeClrChange(this)">
+                </div>
+                <div class="input-hider">
+                    <button class="icon-btn" title="text fill color"><img src="img/icons/paint-board-and-brush.png" alt="text colored"></button>
+                    <input class="text-fill-color-picker hidden-input" type="color" title="text fill color" oninput="onFillClrChange(this)">
+                </div>
             </div>
             <div class="share">
                 <button class="share-btn">Share</button>

@@ -3,6 +3,7 @@
     --clr-primary: #ff7f00;
     --clr1: #ffffff;
     --clr-1: #e3e3e3;
+    --clr-2: #000000;
 
     /* BP */
 
@@ -45,6 +46,12 @@ body {
     margin: 0;
     font-size: 1.1875rem;
     height: 90vh;
+}
+
+input, select {
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
 }
 
 /* BUTTONS */
@@ -139,8 +146,31 @@ button,
     padding: 10px;
 }
 
+.main-header .main-nav li {
+    padding-inline-end: 10px;
+    padding-inline-start: 10px;
+    border-inline-end: solid 1px var(--clr-2);
+}
+
+.main-header .main-nav li:last-child {
+    border-inline-end: none;
+}
+
+.main-header .main-nav a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.main-header .main-nav a:hover {
+    color: var(--clr-2);
+}
+
+
+/* gallery  */
+
 .gallery .filter-nav{
     background-color: var(--clr1);
+    color: var(--clr-2);
     position: relative;
     bottom: 20px;
     width: 100vw;
@@ -148,8 +178,15 @@ button,
     padding: 15px;
 }
 
+.gallery .filter-nav li:first-child:after {
+    content: '🔍';
+}
 
-/* gallery  */
+.gallery .filter-nav input {
+    border-bottom: solid 2px;
+    border-radius: 0px;
+}
+
 .gallery-container {    
     display: grid;
     gap: 10px;
@@ -194,10 +231,17 @@ button,
     height: 20px;
 }
 
-.editor-tools input, select {
-    padding: 10px;
-    border: none;
-    border-radius: 10px;
+.editor-tools .input-hider {
+    position: relative;
+}
+
+.editor-tools input.hidden-input {
+    position: absolute;
+    left: 0;
+    width: 40px;
+    height: 40px;
+    opacity: 0;
+    cursor: pointer;
 }
 
 
@@ -205,9 +249,9 @@ button,
 
 /* canvas  */
 
-.canvas-container {
+/* .canvas-container {
 
-}
+} */
 
 canvas {
     display: block;
