@@ -11,12 +11,10 @@ function onInit() {
 
     gElCanvas = document.getElementById('my-canvas')
     gCtx = gElCanvas.getContext('2d')
-    
-    // renderMeme()
+
 }
 
 function renderMeme() {
-
     const meme = getMeme()
     const { lines, selectedLineIdx: lineIdx, selectedImgId: imgId } = meme
     const imgUrl = getImgPath(imgId)
@@ -33,15 +31,12 @@ function renderMeme() {
 function drawImgAndText(imgUrl, lines) {
     const img = new Image()
     img.onload = () => {
-        console.log('canvas width:', gElCanvas.width, 'height:', gElCanvas.height);
-        console.log('canvas:', gElCanvas);
         gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
         if (lines.length > 0) {
             drawText(lines)
             const meme = getMeme()
-            // ---- WORK ON THIS LATER IF THERE IS TIME -----
-            // const {selectedLineIdx: lineIdx} = meme
-            // drawLineSelectionRect(lines[lineIdx])
+            const { selectedLineIdx: lineIdx } = meme
+            drawLineSelectionRect(lines[lineIdx])
         }
     }
     img.src = imgUrl
@@ -76,22 +71,36 @@ function drawText(lines) {
     });
 }
 
-// gCtx.measureText(txt).width
-// מחזיר את אורך השורה שהטקסט דורש
+function drawLineSelectionRect(line) {
+    let { size, xPos, yPos, txt, align } = line
+    let textWidth = gCtx.measureText(txt).width;
 
-// to work on if there is time
-function drawLineSelectionRect(line){
-    console.log('line to select', line);
+    switch (align) {
+        case 'right':
+            xPos = xPos - textWidth
+            break;
+        case 'center':
+            xPos = xPos - textWidth / 2
+            break;
+    }
 
-    // gCtx.strokeStyle = gCurrDrawTools.color
-    // gCtx.strokeRect(x, y, 20, 20)
-    // gCtx.fillStyle = 'orange'
-    // gCtx.fillRect(x, y, 150, 150)
+    let lineHeight = size * 1.286;
+    gCtx.setLineDash([15, 3, 3, 3]);
+    gCtx.strokeRect(xPos - 2, yPos - lineHeight + 5, textWidth + 6, lineHeight + 5)
+    gCtx.setLineDash([]);
+}
 
+
+// ---  WORK ON THIS IF THERE IS TIME -------
+function removeLineSelection() {
+    // const meme = getMeme()
+    // const { lines, selectedLineIdx} = meme
+    // console.log('removing box from', lines[selectedLineIdx]);
+    // drawLineSelectionRect(lines[selectedLineIdx], false)
 }
 
 function addListeners() {
-    
+
     //  -- WORK ON THIS LATER IF THERE IS TIME --
     // addMouseListeners()
     // addTouchListeners()
@@ -158,7 +167,7 @@ function onDeleteLine() {
 }
 
 function downloadImg(elLink) {
-    console.log('downloading');
-    const imgContent = gElCanvas.toDataURL('image/jpeg')// image/jpeg the default format
+    removeLineSelection()
+    const imgContent = gElCanvas.toDataURL('image/jpeg')
     elLink.href = imgContent
 }

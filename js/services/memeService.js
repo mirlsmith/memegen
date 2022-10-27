@@ -8,32 +8,25 @@ var gImgs = [
     {id: 3, url: 'img/gallery/3.jpg', keywords: ['cute', 'dog', 'baby']},
     {id: 4, url: 'img/gallery/4.jpg', keywords: ['cute', 'cat', 'sleep']},
     {id: 5, url: 'img/gallery/5.jpg', keywords: ['funny', 'baby']},
+    {id: 6, url: 'img/gallery/6.jpg', keywords: ['funny']},
+    {id: 7, url: 'img/gallery/7.jpg', keywords: ['cute', 'baby', 'funny']},
+    {id: 8, url: 'img/gallery/8.jpg', keywords: ['cute', 'happy', 'movie']},
+    {id: 9, url: 'img/gallery/9.jpg', keywords: ['cute', 'baby', 'evil']},
+    {id: 10, url: 'img/gallery/10.jpg', keywords: ['politician', 'obama', 'happy']},
+    {id: 11, url: 'img/gallery/11.jpg', keywords: ['kiss', 'fight', 'men']},
+    {id: 12, url: 'img/gallery/12.jpg', keywords: ['funny']},
+    {id: 13, url: 'img/gallery/13.jpg', keywords: ['movie', 'happy']},
+    {id: 14, url: 'img/gallery/14.jpg', keywords: ['movie', 'serious']},
+    {id: 15, url: 'img/gallery/15.jpg', keywords: ['movie']},
+    {id: 16, url: 'img/gallery/16.jpg', keywords: ['movie', 'happy']},
+    {id: 17, url: 'img/gallery/17.jpg', keywords: ['politician', 'serious']},
+    {id: 18, url: 'img/gallery/18.jpg', keywords: ['movie']},
 ]; 
 
 var gMeme = {
     selectedImgId: 2,
     selectedLineIdx: 0,
-    lines: [ {
-        txt: 'Too Much Cuteness', 
-        size: 30,
-        font: 'Impact',
-        align: 'left',
-        strokeColor: 'red',
-        fillColor: 'purple',
-        xPos: 20,
-        yPos: 50
-    },
-    {
-        txt: 'So Soft and Cuddly', 
-        size: 30,
-        font: 'Impact',
-        align: 'left',
-        strokeColor: 'red',
-        fillColor: 'purple',
-        xPos: 20,
-        yPos: 150
-    }
-]
+    lines: []
 }
 
 function addLine() {
@@ -42,8 +35,8 @@ function addLine() {
         size: 30,
         font: 'Impact',
         align: 'center',
-        strokeColor: 'red',
-        fillColor: 'purple',
+        strokeColor: 'black',
+        fillColor: 'white',
         xPos: getCanvasWidth() / 2,
         yPos: 60
     }
