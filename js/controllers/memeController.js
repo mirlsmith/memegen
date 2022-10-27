@@ -11,24 +11,15 @@ function onInit() {
 
     gElCanvas = document.getElementById('my-canvas')
     gCtx = gElCanvas.getContext('2d')
-
-    // resizeCanvas()
-    // window.addEventListener('resize', resizeCanvas)
-
-    // addListeners()
-    // resizeCanvas()
     
     // renderMeme()
 }
 
 function renderMeme() {
 
-    // resizeCanvas()
-
     const meme = getMeme()
     const { lines, selectedLineIdx: lineIdx, selectedImgId: imgId } = meme
     const imgUrl = getImgPath(imgId)
-    // const line = lines[lineIdx]
     drawImgAndText(imgUrl, lines)
 
     if (lines.length === 0) {
@@ -99,33 +90,11 @@ function drawLineSelectionRect(line){
 
 }
 
-function resizeCanvas() {
-    const elContainer = document.querySelector('.canvas-container')
-    // Note: changing the canvas dimension this way clears the canvas
-    console.log('canvas container width: ', elContainer.offsetWidth);
-    console.log('canvas ctx width:', gCtx.clientWidth);
-    console.log('canvas resolution(?) width:', gCtx.width);
-
-    if (elContainer.offsetWidth >= 700){
-        gElCanvas.width = 700
-        gElCanvas.height = 700
-    }
-    
-    // gElCanvas.width = elContainer.offsetWidth //- 40
-    // Unless needed, better keep height fixed.
-    // gElCanvas.height = elContainer.offsetHeight
-    renderMeme()
-}
-
 function addListeners() {
     
     //  -- WORK ON THIS LATER IF THERE IS TIME --
     // addMouseListeners()
     // addTouchListeners()
-
-    window.addEventListener('resize', () => {
-        resizeCanvas()
-    })
 }
 
 function getCanvasHeight() {
@@ -186,4 +155,10 @@ function onAddLine() {
 function onDeleteLine() {
     deleteLine()
     renderMeme()
+}
+
+function downloadImg(elLink) {
+    console.log('downloading');
+    const imgContent = gElCanvas.toDataURL('image/jpeg')// image/jpeg the default format
+    elLink.href = imgContent
 }
