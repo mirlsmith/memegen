@@ -105,7 +105,7 @@ function setLineAlignment(newAlign) {
     if (gMeme.lines.length === 0) return
     gMeme.lines[gMeme.selectedLineIdx].align = newAlign
     
-    setLineXPos (gMeme.lines[gMeme.selectedLineIdx])
+    setLineXPos(gMeme.lines[gMeme.selectedLineIdx])
 }
 
 function setLineXPos(line) {

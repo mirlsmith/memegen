@@ -107,11 +107,11 @@ function addListeners() {
 }
 
 function getCanvasHeight() {
-    return gElCanvas.getBoundingClientRect().height
+    return gElCanvas.height
 }
 
 function getCanvasWidth() {
-    return gElCanvas.getBoundingClientRect().width
+    return gElCanvas.width
 }
 
 function onTextChange(elInput) {

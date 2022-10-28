@@ -12,6 +12,7 @@ function renderGallery() {
 
 function onImgSelect(elImg) {
     setMemeImg(elImg.dataset.id)
+    if (getMeme().lines.length === 0) addLine()
     document.querySelector('.gallery').classList.add('hidden')
     document.querySelector('.meme-editor').classList.remove('hidden')
     renderMeme()
