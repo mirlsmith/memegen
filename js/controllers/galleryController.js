@@ -13,8 +13,6 @@ function renderGallery() {
 function onImgSelect(elImg) {
     setMemeImg(elImg.dataset.id)
     if (getMeme().lines.length === 0) addLine()
-    // document.querySelector('.gallery').classList.add('hidden')
-    // document.querySelector('.meme-editor').classList.remove('hidden')
     showMemeEditor()
     renderMeme()
 }
@@ -22,9 +20,12 @@ function onImgSelect(elImg) {
 function showMemeEditor() {
     document.querySelector('.gallery').classList.add('hidden')
     document.querySelector('.meme-editor').classList.remove('hidden')
+    // document.querySelector('.saved-memes-container').classList.add('hidden')
 }
 
 function onGalleryLink() {
     document.querySelector('.gallery').classList.remove('hidden')
     document.querySelector('.meme-editor').classList.add('hidden')
+    // document.querySelector('.saved-memes-container').classList.add('hidden')
+
 }

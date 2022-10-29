@@ -222,6 +222,9 @@ button,
 .editor-tools .share-btn {
     grid-area: share-btn;
 }
+.editor-tools .save-btn {
+    grid-area: save-btn;
+}
 
 
 
@@ -281,6 +284,20 @@ button,
 }
 
 .gallery-container img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+/* meme gallery container  */
+.saved-memes-container {
+    display: grid;
+    gap: 10px;
+    grid-template-columns: 1fr 1fr;
+}
+
+.saved-memes-container img {
     object-fit: cover;
     width: 100%;
     height: 100%;

@@ -147,9 +147,9 @@ function makeRamdomMeme() {
     for (let i = 0; i < numLines; i++) {
         addLine(gRandomLines[getRandomIntInclusive(0, gRandomLines.length-1)])
     }
- 
 }
 
-function saveMeme() {
-    gSavedMemes.unshift(gMeme)
+function saveMeme(url) {
+    const meme = getMeme()
+    gSavedMemes.unshift({meme, url})
 }
