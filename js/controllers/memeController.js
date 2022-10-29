@@ -171,3 +171,21 @@ function downloadImg(elLink) {
     const imgContent = gElCanvas.toDataURL('image/jpeg')
     elLink.href = imgContent
 }
+
+function onRandomMeme() {
+    makeRamdomMeme()
+    showMemeEditor()
+    renderMeme()
+}
+
+function onSaveMeme() {
+    saveMeme()
+}
+
+function renderSavedMemes(){
+
+}
+
+function onShowSavedMemes(){
+
+}

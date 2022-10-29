@@ -1,6 +1,6 @@
 'use strict'
 
-var gKeywordSearchCountMap = {'funny': 12,'cat': 16, 'baby': 2}
+//var gKeywordSearchCountMap = {'funny': 12,'cat': 16, 'baby': 2}
 
 var gImgs = [
     {id: 1, url: 'img/gallery/1.jpg', keywords: ['politician', 'trump', 'angry']},
@@ -29,17 +29,23 @@ var gMeme = {
     lines: []
 }
 
-function addLine() {
+var gRandomLines = ['Is this really', 'Mornings make me', 'People are always like', 'Before coffee', 'Bring it on']
+
+var gSavedMemes = []
+
+function addLine(txt = 'Say Something') {
+    let y = (gMeme.lines[gMeme.selectedLineIdx])? gMeme.lines[gMeme.selectedLineIdx].yPos + 50 : 60
     let newLine = {
-        txt: 'Say Something!', 
+        txt, 
         size: 30,
         font: 'Impact',
         align: 'center',
         strokeColor: 'black',
         fillColor: 'white',
         xPos: getCanvasWidth() / 2,
-        yPos: 60
+        yPos: y
     }
+     
     gMeme.lines.unshift(newLine)
     gMeme.selectedLineIdx = 0
 }
@@ -128,4 +134,22 @@ function setLineXPos(line) {
 function setLineSelect() {
     if (gMeme.lines.length === 0) return
     gMeme.selectedLineIdx = (gMeme.selectedLineIdx + 1 > gMeme.lines.length-1)? 0: ++gMeme.selectedLineIdx
+}
+
+function makeRamdomMeme() {
+    gMeme = {
+        selectedImgId: getRandomIntInclusive(1,gImgs.length),
+        selectedLineIdx: 0,
+        lines: []
+    }
+
+    let numLines = getRandomIntInclusive(1,2)
+    for (let i = 0; i < numLines; i++) {
+        addLine(gRandomLines[getRandomIntInclusive(0, gRandomLines.length-1)])
+    }
+ 
+}
+
+function saveMeme() {
+    gSavedMemes.unshift(gMeme)
 }
