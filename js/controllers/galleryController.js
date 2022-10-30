@@ -1,7 +1,7 @@
 'use strict'
 
-function renderGallery() {
-    const imgs = getImgs()
+function renderGallery(txtFilter) {
+    const imgs = getImgs(txtFilter)
     let strHTML = imgs.map((img) => {
         return `<article class="gallery-img">
         <img data-id="${img.id}" onclick="onImgSelect(this)" src='${img.url}' alt="image"></article>`
@@ -18,14 +18,15 @@ function onImgSelect(elImg) {
 }
 
 function showMemeEditor() {
-    document.querySelector('.gallery').classList.add('hidden')
+    closeAllSections()
     document.querySelector('.meme-editor').classList.remove('hidden')
-    document.querySelector('.saved-memes').classList.add('hidden')
 }
 
 function onGalleryLink() {
+    closeAllSections()
     document.querySelector('.gallery').classList.remove('hidden')
-    document.querySelector('.meme-editor').classList.add('hidden')
-    document.querySelector('.saved-memes').classList.add('hidden')
+}
 
+function onSetFilterByTxt(filterBy) {
+    renderGallery(filterBy)
 }

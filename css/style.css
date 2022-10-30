@@ -1,6 +1,6 @@
 :root {
     /* pallet */
-    --clr-primary: #ff7f00;
+    --clr-primary: #ff9326;
     --clr1: #ffffff;
     --clr-1: #e3e3e3;
     --clr-2: #000000;
@@ -38,7 +38,7 @@ html {
 body {
     margin: 0;
     font-size: 1.1875rem;
-    height: 90vh;
+    min-height: 100vh;
 }
 
 input,
@@ -46,6 +46,7 @@ select {
     padding: 10px;
     border: none;
     border-radius: 10px;
+    outline: none;
 }
 
 h1,
@@ -66,6 +67,7 @@ button,
     margin: 0;
     font-family: montserrat-med, sans-serif;
     line-height: normal;
+    text-align: center;
     color: var(--clr1);
     border: none;
     padding: 0.5em 1.3em;
@@ -78,6 +80,7 @@ button,
     background-color: var(--clr1);
     padding-left: 0.7em;
     padding-right: 0.7em;
+    width: 60px;
 }
 
 /* HELPERS */
@@ -116,10 +119,16 @@ button,
 
 /* LAYOUT */
 
+main {
+    flex-grow: 1;
+    background-color: var(--clr-1);
+}
+
 .main-section-layout {
     background-color: var(--clr-1);
     margin: 0 auto;
     padding: 20px;
+    height: 100%;
 }
 
 .colored-section {
@@ -138,11 +147,6 @@ button,
     flex-direction: column;
     gap: 10px;
 }
-
-/* .meme-editor .editor-tools {
-    justify-content: space-evenly;
-    align-items: center;
-} */
 
 .meme-editor .editor-tools {
     display: grid;
@@ -165,16 +169,17 @@ button,
 }
 
 .editor-tools>* {
-    height: 50px;
+    height: 60px;
 }
 
 .editor-tools .input-hider>* {
-    height: 50px;
-    width: 50px;
+    height: 60px;
+    width: 60px;
 }
 
 .editor-tools .txt-input {
     grid-area: txt-input;
+    font-size: 1em;
 }
 
 .editor-tools .ln-up {
@@ -212,6 +217,8 @@ button,
 }
 .editor-tools .slct-fnt {
     grid-area: slct-fnt;
+    font-size: 1em;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 .editor-tools .strk-clr {
     grid-area: strk-clr;
@@ -233,7 +240,7 @@ button,
 /* header  */
 
 .main-header {
-    padding: 10px;
+    padding: 10px 20px 10px 20px;
 }
 
 .main-header .main-nav li {
@@ -287,6 +294,7 @@ button,
     object-fit: cover;
     width: 100%;
     height: 100%;
+    border-radius: 10px;
     cursor: pointer;
 }
 
@@ -301,6 +309,7 @@ button,
     object-fit: cover;
     width: 100%;
     height: 100%;
+    border-radius: 10px;
     cursor: pointer;
 }
 
@@ -308,10 +317,12 @@ button,
 
 .main-footer {
     padding: 10px;
+    width: 100%;
 }
 
 .main-footer p {
     font-family: montserrat-lite, sans-serif;
+    margin: 10px;
 }
 
 /* logo  */
@@ -328,7 +339,7 @@ button,
 /* editor tools  */
 
 .editor-tools img {
-    height: 20px;
+    height: 30px;
 }
 
 .editor-tools>* {
@@ -336,7 +347,7 @@ button,
 }
 
 .editor-tools a {
-    font-size: 0.75em;
+    font-size: 0.9em;
     text-decoration: none;
     display: block;
 }
@@ -348,8 +359,8 @@ button,
 .editor-tools input.hidden-input {
     position: absolute;
     left: 0;
-    width: 40px;
-    height: 40px;
+    width: 60px;
+    height: 60px;
     opacity: 0;
     cursor: pointer;
 }
@@ -361,6 +372,7 @@ canvas {
     margin: 0 auto;
     width: 100%;
     object-fit: contain;
+    border-radius: 10px;
 }
 
 .canvas-container {

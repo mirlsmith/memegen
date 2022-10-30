@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body class="main-layout" onload="onInit()">
+<body class="main-layout flex flex-col" onload="onInit()">
 
     <header class="main-header flex align-center space-between colored-section">
         <div class="logo"><img src="img/LOGO.png" alt="logo"></div>
@@ -21,86 +21,88 @@
         </nav>
     </header>
 
-    <section class="gallery main-section-layout">
-        <div class="gallery-header flex">
-            <h2>Choose an Image</h2>
-            <button onclick="onRandomMeme()">Suprise Me</button>
-        </div>
-        <nav class="filter-nav hidden">
-            <ul class="flex clean-list space-between">
-                <li><input type="text" placeholder="Enter search keyword"></li>
-                <li>Keywords</li>
-            </ul>
-        </nav>
-
-        <div class="gallery-container">
-            <article class="gallery-img"><img data-id="" onclick="onImgSelect(this)" src="img/gallery/1.jpg"
-                    alt="image"></article>
-        </div>
-    </section>
-
-    <section class="meme-editor flex main-section-layout">
-        <section class="canvas-container">
-            <canvas id="my-canvas" width="400" height="400"></canvas>
-        </section>
-
-        <section class="editor-tools">
-            <input class="txt-input" type="text" oninput="onTextChange(this)" placeholder="Add a line to edit text">
-            <button class="icon-btn ln-up" title="move line up" onclick="onMoveLine(-1)"><img
-                    src="img/icons/arrow-up.png" alt="up"></button>
-            <button class="icon-btn ln-down" title="move line down" onclick="onMoveLine(1)"><img
-                    src="img/icons/arrow-down.png" alt="down"></button>
-            <button class="icon-btn ln-select" title="toggle line selection" onclick="onLineSelect()"><img
-                    src="img/icons/up-and-down-opposite-double-arrows-side-by-side.png"
-                    alt="up or down button"></button>
-            <button class="icon-btn add-ln" title="add line" onclick="onAddLine()"><img src="img/icons/add.png"
-                    alt="add"></button>
-            <button class="icon-btn dlt-ln" title="delete line" onclick="onDeleteLine()"><img src="img/icons/trash.png"
-                    alt="delete"></button>
-            <button class="icon-btn pls-fnt" title="increase font size" onclick="onFontSizeChange(1)"><img
-                    src="img/icons/increase font - icon.png" alt="increase font"></button>
-            <button class="icon-btn mns-font" title="decrease font size" onclick="onFontSizeChange(-1)"><img
-                    src="img/icons/decrease font - icon.png" alt="decrease font"></button>
-            <button class="icon-btn aln-lft" title="align text left" data-align="left"
-                onclick="onAlignChange(this)"><img src="img/icons/align-to-left.png" alt="align left"></button>
-            <button class="icon-btn aln-ctr" title="align text center" data-align="center"
-                onclick="onAlignChange(this)"><img src="img/icons/center-text-alignment.png" alt="center-text"></button>
-            <button class="icon-btn aln-rt" title="align text right" data-align="right"
-                onclick="onAlignChange(this)"><img src="img/icons/align-to-right.png" alt="align right"></button>
-            <select class="font-picker slct-fnt" title="select font" onchange="onFontTypeChange(this)">
-                <option value="impact">Impact</option>
-                <option value="arial">Arial</option>
-                <option value="comic-sans">Comic Sans</option>
-                <option value="helvetica">Helvetica</option>
-                <option value="montserrat">Montserrat</option>
-            </select>
-            <div class="input-hider strk-clr">
-                <button class="icon-btn" type="color" title="text outline color"><img src="img/icons/text stroke.png"
-                        alt="text stroke"></button>
-                <input class="text-stroke-color-picker hidden-input" type="color" title="text outline color"
-                    oninput="onStrokeClrChange(this)">
+    <main>
+        <section class="gallery main-section-layout">
+            <div class="gallery-header flex">
+                <input type="text" oninput="onSetFilterByTxt(this.value)" placeholder="Search by keyword">
+                <h2>Choose an Image</h2>
+                <button onclick="onRandomMeme()">Surprise Me!</button>
             </div>
-            <div class="input-hider fill-clr">
-                <button class="icon-btn" title="text fill color"><img src="img/icons/paint-board-and-brush.png"
-                        alt="text colored"></button>
-                <input class="text-fill-color-picker hidden-input" type="color" title="text fill color"
-                    oninput="onFillClrChange(this)">
-            </div>
-            <div class="share share-btn">
-                <a href="#" class="btn" onclick="downloadImg(this)" download="my-meme.jpg">Download</a>
-            </div>
-            <div class="share save-btn">
-                <a class="btn" onclick="onSaveMeme()">Save Meme</a>
+            <nav class="filter-nav hidden">
+                <ul class="flex clean-list space-between">
+                    <li><input type="text" placeholder="Enter search keyword"></li>
+                    <li>Keywords</li>
+                </ul>
+            </nav>
+
+            <div class="gallery-container">
+                <article class="gallery-img"><img data-id="" onclick="onImgSelect(this)" src="img/gallery/1.jpg"
+                        alt="image"></article>
             </div>
         </section>
-    </section>
 
-    <section class="saved-memes main-section-layout">
-        <div class="saved-memes-container">
+        <section class="meme-editor flex main-section-layout">
+            <section class="canvas-container">
+                <canvas id="my-canvas" width="400" height="400"></canvas>
+            </section>
 
-        </div>
+            <section class="editor-tools">
+                <input class="txt-input" type="text" oninput="onTextChange(this)" placeholder="Add a line to edit text">
+                <button class="icon-btn ln-up" title="move line up" onclick="onMoveLine(-1)"><img
+                        src="img/icons/arrow-up.png" alt="up"></button>
+                <button class="icon-btn ln-down" title="move line down" onclick="onMoveLine(1)"><img
+                        src="img/icons/arrow-down.png" alt="down"></button>
+                <button class="icon-btn ln-select" title="toggle line selection" onclick="onLineSelect()"><img
+                        src="img/icons/up-and-down-opposite-double-arrows-side-by-side.png"
+                        alt="up or down button"></button>
+                <button class="icon-btn add-ln" title="add line" onclick="onAddLine()"><img src="img/icons/add.png"
+                        alt="add"></button>
+                <button class="icon-btn dlt-ln" title="delete line" onclick="onDeleteLine()"><img src="img/icons/trash.png"
+                        alt="delete"></button>
+                <button class="icon-btn pls-fnt" title="increase font size" onclick="onFontSizeChange(1)"><img
+                        src="img/icons/increase font - icon.png" alt="increase font"></button>
+                <button class="icon-btn mns-font" title="decrease font size" onclick="onFontSizeChange(-1)"><img
+                        src="img/icons/decrease font - icon.png" alt="decrease font"></button>
+                <button class="icon-btn aln-lft" title="align text left" data-align="left"
+                    onclick="onAlignChange(this)"><img src="img/icons/align-to-left.png" alt="align left"></button>
+                <button class="icon-btn aln-ctr" title="align text center" data-align="center"
+                    onclick="onAlignChange(this)"><img src="img/icons/center-text-alignment.png" alt="center-text"></button>
+                <button class="icon-btn aln-rt" title="align text right" data-align="right"
+                    onclick="onAlignChange(this)"><img src="img/icons/align-to-right.png" alt="align right"></button>
+                <select class="font-picker slct-fnt" title="select font" onchange="onFontTypeChange(this)">
+                    <option value="impact">Impact</option>
+                    <option value="arial">Arial</option>
+                    <option value="comic-sans">Comic Sans</option>
+                    <option value="helvetica">Helvetica</option>
+                    <option value="montserrat">Montserrat</option>
+                </select>
+                <div class="input-hider strk-clr">
+                    <button class="icon-btn" type="color" title="text outline color"><img src="img/icons/text stroke.png"
+                            alt="text stroke"></button>
+                    <input class="text-stroke-color-picker hidden-input" type="color" title="text outline color"
+                        oninput="onStrokeClrChange(this)">
+                </div>
+                <div class="input-hider fill-clr">
+                    <button class="icon-btn" title="text fill color"><img src="img/icons/paint-board-and-brush.png"
+                            alt="text colored"></button>
+                    <input class="text-fill-color-picker hidden-input" type="color" title="text fill color"
+                        oninput="onFillClrChange(this)">
+                </div>
+                <div class="share share-btn">
+                    <a href="#" class="btn" onclick="downloadImg(this)" download="my-meme.jpg">Download</a>
+                </div>
+                <div class="share save-btn">
+                    <a class="btn" onclick="onSaveMeme()">Save Meme</a>
+                </div>
+            </section>
+        </section>
 
-    </section>
+        <section class="saved-memes main-section-layout">
+            <div class="saved-memes-container">
+            </div>
+        </section>
+
+    </main>
 
     <footer class="main-footer colored-section flex flex-col align-center">
         <div class="logo"><img src="img/LOGO.png" alt="logo"></div>

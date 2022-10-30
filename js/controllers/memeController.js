@@ -15,11 +15,11 @@ function onInit() {
 
 }
 
-function renderMeme() {
+function renderMeme(isLineSelected = true) {
     const meme = getMeme()
     const { lines, selectedLineIdx: lineIdx, selectedImgId: imgId } = meme
     const imgUrl = getImgPath(imgId)
-    drawImgAndText(imgUrl, lines)
+    drawImgAndText(imgUrl, lines, isLineSelected)
 
     if (lines.length === 0) {
         document.querySelector('.editor-tools input').value = ''
@@ -29,7 +29,8 @@ function renderMeme() {
     }
 }
 
-function drawImgAndText(imgUrl, lines) {
+function drawImgAndText(imgUrl, lines, isLineSelected) {
+    //gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height)
     const img = new Image()
     img.onload = () => {
         gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
@@ -37,7 +38,7 @@ function drawImgAndText(imgUrl, lines) {
             drawText(lines)
             const meme = getMeme()
             const { selectedLineIdx: lineIdx } = meme
-            drawLineSelectionRect(lines[lineIdx])
+            if (isLineSelected) drawLineSelectionRect(lines[lineIdx])
         }
     }
     img.src = imgUrl
@@ -94,10 +95,7 @@ function drawLineSelectionRect(line) {
 
 // ---  WORK ON THIS IF THERE IS TIME -------
 function removeLineSelection() {
-    // const meme = getMeme()
-    // const { lines, selectedLineIdx} = meme
-    // console.log('removing box from', lines[selectedLineIdx]);
-    // drawLineSelectionRect(lines[selectedLineIdx], false)
+    renderMeme(false)
 }
 
 function addListeners() {
@@ -138,7 +136,12 @@ function onFontSizeChange(diff) {
 
 function onFontTypeChange(elSelect) {
     setFontType(elSelect)
+    setSelectOptionsFont(elSelect.value)
     renderMeme()
+}
+
+function setSelectOptionsFont(fontName){
+    document.querySelector('.slct-fnt').style.fontFamily = fontName
 }
 
 function onMoveLine(diff) {
@@ -169,8 +172,10 @@ function onDeleteLine() {
 
 function downloadImg(elLink) {
     removeLineSelection()
-    const imgContent = gElCanvas.toDataURL('image/jpeg')
-    elLink.href = imgContent
+    setTimeout(()=>{
+        const imgContent = gElCanvas.toDataURL('image/jpeg');
+        elLink.href = imgContent},500)
+    
 }
 
 function onRandomMeme() {
@@ -180,9 +185,13 @@ function onRandomMeme() {
 }
 
 function onSaveMeme() {
-    const memeUrl = gElCanvas.toDataURL('image/jpeg')
-    saveMeme(memeUrl)
-    renderMemeGallery()
+    removeLineSelection()
+
+    setTimeout(()=>{
+        const memeUrl = gElCanvas.toDataURL('image/jpeg'); 
+        saveMeme(memeUrl); 
+        renderMemeGallery(); 
+        showMemeGallery() },300)
 }
 
 function renderMemeGallery() {
@@ -204,13 +213,18 @@ function onSavedMemesLink() {
 }
 
 function showMemeGallery(){
-    document.querySelector('.gallery').classList.add('hidden')
-    document.querySelector('.meme-editor').classList.add('hidden')
+    closeAllSections()
     document.querySelector('.saved-memes').classList.remove('hidden')
 }
 
+function closeAllSections() {
+    document.querySelector('.gallery').classList.add('hidden')
+    document.querySelector('.meme-editor').classList.add('hidden')
+    document.querySelector('.saved-memes').classList.add('hidden')
+}
+
+
 function onSavedMemeSelect(elMeme) {
-    console.log(elMeme);
     setMeme(elMeme.dataset.id)
     renderMeme()
     showMemeEditor()

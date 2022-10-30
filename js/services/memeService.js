@@ -59,9 +59,20 @@ function getMeme() {
     return gMeme
 }
 
-function getImgs() {
-    return gImgs
+function getImgs(txt) {
+
+    let imgs = gImgs
+
+    if (txt) {
+        // console.log('imgs to show', imgs);
+        return imgs.filter((img) => img.keywords.some((keyword) => keyword.includes(txt)))
+    }
+
+    return imgs
 }
+
+
+//filter by text gImgs.filter((img) => img.keywords.some((keyword) => keyword.includes(gFilterBy)));
 
 function getImgPath(imgId) {
     const img = gImgs.find(image => imgId === image.id)
@@ -103,7 +114,7 @@ function setLineYPos(diff){
     if (gMeme.lines.length === 0) return
     let newYPos = gMeme.lines[gMeme.selectedLineIdx].yPos + 5*(+diff)
     const lineHeight = gMeme.lines[gMeme.selectedLineIdx].size
-    if (newYPos < lineHeight || newYPos > getCanvasHeight()) return
+    if (newYPos < lineHeight+6 || newYPos > getCanvasHeight()-lineHeight) return
     gMeme.lines[gMeme.selectedLineIdx].yPos = newYPos
 }
 
@@ -163,6 +174,6 @@ function setMeme(memeId) {
 function getSelectedMeme(id) {
     const chosenMeme = gSavedMemes.find(savedMeme => id === savedMeme.memeId)
     const {meme} = chosenMeme
-    console.log('chosen meme', meme); //SOMETHING HERE ISN'T WORKING
+    //console.log('chosen meme', meme); //SOMETHING HERE ISN'T WORKING
     return meme
 }
