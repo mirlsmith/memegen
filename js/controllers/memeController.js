@@ -6,6 +6,7 @@ let gCtx
 function onInit() {
 
     document.querySelector('.meme-editor').classList.add('hidden')
+    document.querySelector('.saved-memes').classList.add('hidden')
 
     renderGallery()
 
@@ -181,28 +182,16 @@ function onRandomMeme() {
 function onSaveMeme() {
     const memeUrl = gElCanvas.toDataURL('image/jpeg')
     saveMeme(memeUrl)
-    console.log(gSavedMemes);
     renderMemeGallery()
-}
-
-function renderSavedMemes(){
-        const memes = getMemes()
-        const memesHTML = memes.map(meme => {
-            return `
-            <img src="${meme.result}" class="img" onclick="onEditMeme('${meme.id}')">
-            
-            `
-        }).join('')
-        document.querySelector('.memes').innerHTML = memesHTML
 }
 
 function renderMemeGallery() {
     const memes = getSavedMemes()
     let strHTML = memes.map((meme) => {
-        return `<article class="meme-img"><img onclick="onSavedMemeSelect(this)" src="${meme.url}"
+        return `<article class="meme-img"><img data-id="${meme.memeId}" onclick="onSavedMemeSelect(this)" src="${meme.url}"
             alt="meme image"></article>`
     })
-
+    
     document.querySelector('.saved-memes-container').innerHTML = strHTML.join('')
 }
 
@@ -210,8 +199,19 @@ function getSavedMemes() {
     return gSavedMemes
 }
 
-// function showMemeGallery(){
-//     document.querySelector('.gallery').classList.add('hidden')
-//     document.querySelector('.meme-editor').classList.add('hidden')
-//     document.querySelector('.saved-memes-container').classList.remove('hidden')
-// }
+function onSavedMemesLink() {
+    showMemeGallery()
+}
+
+function showMemeGallery(){
+    document.querySelector('.gallery').classList.add('hidden')
+    document.querySelector('.meme-editor').classList.add('hidden')
+    document.querySelector('.saved-memes').classList.remove('hidden')
+}
+
+function onSavedMemeSelect(elMeme) {
+    console.log(elMeme);
+    setMeme(elMeme.dataset.id)
+    renderMeme()
+    showMemeEditor()
+}

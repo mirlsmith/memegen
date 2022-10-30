@@ -16,7 +16,7 @@
         <nav class="main-nav">
             <ul class="flex clean-list">
                 <li><a href="#" onclick="onGalleryLink()">Gallery</a></li>
-                <!-- <li><a href="#">About</a></li> -->
+                <li><a href="#" onclick="onSavedMemesLink()">My Memes</a></li>
             </ul>
         </nav>
     </header>
@@ -89,15 +89,18 @@
             <div class="share share-btn">
                 <a href="#" class="btn" onclick="downloadImg(this)" download="my-meme.jpg">Download</a>
             </div>
-            <!-- <div class="share save-btn">
+            <div class="share save-btn">
                 <a class="btn" onclick="onSaveMeme()">Save Meme</a>
-            </div> -->
+            </div>
         </section>
     </section>
 
-    <!-- <section class="saved-memes-container main-section-layout hidden">
+    <section class="saved-memes main-section-layout">
+        <div class="saved-memes-container">
 
-    </section> -->
+        </div>
+
+    </section>
 
     <footer class="main-footer colored-section flex flex-col align-center">
         <div class="logo"><img src="img/LOGO.png" alt="logo"></div>

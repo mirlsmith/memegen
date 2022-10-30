@@ -20,12 +20,12 @@ function onImgSelect(elImg) {
 function showMemeEditor() {
     document.querySelector('.gallery').classList.add('hidden')
     document.querySelector('.meme-editor').classList.remove('hidden')
-    // document.querySelector('.saved-memes-container').classList.add('hidden')
+    document.querySelector('.saved-memes').classList.add('hidden')
 }
 
 function onGalleryLink() {
     document.querySelector('.gallery').classList.remove('hidden')
     document.querySelector('.meme-editor').classList.add('hidden')
-    // document.querySelector('.saved-memes-container').classList.add('hidden')
+    document.querySelector('.saved-memes').classList.add('hidden')
 
 }

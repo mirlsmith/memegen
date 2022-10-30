@@ -151,5 +151,18 @@ function makeRamdomMeme() {
 
 function saveMeme(url) {
     const meme = getMeme()
-    gSavedMemes.unshift({meme, url})
+    const memeId = makeId(3)
+    gSavedMemes.unshift({memeId, meme, url})
+}
+
+function setMeme(memeId) {
+    const newMeme = getSelectedMeme(memeId)
+    gMeme = newMeme
+}
+
+function getSelectedMeme(id) {
+    const chosenMeme = gSavedMemes.find(savedMeme => id === savedMeme.memeId)
+    const {meme} = chosenMeme
+    console.log('chosen meme', meme); //SOMETHING HERE ISN'T WORKING
+    return meme
 }
